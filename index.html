@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 	<link rel="stylesheet" type="text/css" href="css/loading.css">
 	<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&display=swap' rel='stylesheet' type='text/css'>
 	<!-- <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'> -->
 	<link rel="stylesheet/less" href="cake.less"> 
 	<style type="text/css" id="less:birthday-cake">
@@ -319,11 +320,24 @@ p {
 </head>
 
 <body>
+	<!-- TEMP TEST BUTTON - REMOVE BEFORE SHARING -->
+	<button id="test_skip_memories" style="position:fixed;top:10px;left:10px;z-index:9999;padding:6px 12px;font-size:12px;">TEST: Skip to Memories</button>
+	<!-- END TEMP TEST BUTTON -->
 	<div class="loading"></div>
-  <img src="assets/images/photo1.jpg" class="album-photo album-left-1">
-  <img src="assets/images/photo2.jpg" class="album-photo album-left-2">
-  <img src="assets/images/photo3.jpg" class="album-photo album-right-1">
-  <img src="assets/images/photo4.jpg" class="album-photo album-right-2">
+  <div class="countdown-wrap" id="countdown_wrap">
+    <p class="countdown-title">Countdown to the <span class="countdown-highlight">Lights</span></p>
+    <div class="countdown-boxes">
+      <div class="countdown-box"><span class="countdown-num" id="cd_days">00</span><span class="countdown-label">Days</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cd_hours">00</span><span class="countdown-label">Hours</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cd_minutes">00</span><span class="countdown-label">Minutes</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cd_seconds">00</span><span class="countdown-label">Seconds</span></div>
+    </div>
+    <p class="countdown-caption">24 August 2026</p>
+  </div>
+  <img src="assets/images/photo_6077648474015994848_y.jpg" class="album-photo album-left-1">
+  <img src="assets/images/photo_6077648474015994864_y.jpg" class="album-photo album-left-2">
+  <img src="assets/images/photo_6077648474015994855_y.jpg" class="album-photo album-right-1">
+  <img src="assets/images/photo_6077648474015994866_y.jpg" class="album-photo album-right-2">
 
   <!-- Hint image -->
   <img src="assets/images/can-zoom.png" class="can-zoom">
@@ -421,7 +435,7 @@ p {
 				<p>a piece of happiness to you</p>
 				<p>I made all this...</p>
 				<p>as a birthday present to you</p>
-				<p>I'm glad we met on zzz</p>
+				<p>I'm glad we met</p>
 				<p>thanks for the friendship we made</p>
 				<p>thanks for everything</p>
 				<p>I wish you all the best</p>
@@ -454,17 +468,141 @@ p {
 				<p>a very happy birthday babyy ❤️</p>
 			</div>
 		</div>
+		<div class="slideshow-wrap" id="slideshow_wrap">
+			<div class="slideshow-frame">
+				<div class="slideshow-slide slideshow-slide-video">
+					<video class="slideshow-slide-fg" muted playsinline preload="metadata">
+						<source src="assets/video/memory1.mp4" type="video/mp4">
+					</video>
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994840_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994840_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994841_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994841_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994842_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994842_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994843_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994843_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994844_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994844_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994845_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994845_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994846_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994846_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994847_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994847_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994848_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994848_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994849_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994849_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994850_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994850_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994851_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994851_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994852_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994852_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994853_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994853_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994854_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994854_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994855_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994855_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994856_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994856_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994857_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994857_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994858_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994858_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994859_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994859_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994860_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994860_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994861_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994861_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994862_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994862_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994863_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994863_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994864_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994864_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994865_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994865_y.jpg" class="slideshow-slide-fg">
+				</div>
+				<div class="slideshow-slide">
+					<div class="slideshow-slide-bg" style="background-image:url('assets/images/photo_6077648474015994866_y.jpg');"></div>
+					<img src="assets/images/photo_6077648474015994866_y.jpg" class="slideshow-slide-fg">
+				</div>
+			</div>
+			<div class="slideshow-overlay slideshow-overlay-top">
+				<p class="slideshow-title">Beautiful <span class="slideshow-highlight">Memories</span> &lt;3</p>
+			</div>
+			<button type="button" id="slideshow_next" class="slideshow-next" aria-label="Next photo">&rsaquo;</button>
+			<audio class="slideshow-song" loop>
+				<source src="assets/audio/slideshow.mp3" type="audio/mpeg">
+			</audio>
+		</div>
 		<div class="navbar navbar-fixed-bottom">
 			<div class="row">
 				<div class="col-md-6 text-center col-md-offset-3">
-					<button class="btn btn-primary" id="turn_on">Turn On Lights</button>
-					<button class="btn btn-primary" id="play">Play the Music Buddy</button>
+					<button class="btn btn-primary" id="play">Play the Music</button>
 					<button class="btn btn-primary" id="bannar_coming">Let's Decorate</button>
 					<button class="btn btn-primary" id="balloons_flying">Calm, i got you some baloons</button>
 					<button class="btn btn-primary" id="cake_fadein">Cake? of course!</button>
 					<button class="btn btn-primary" id="light_candle">Don't forget to Light the Candle</button>
-					<button class="btn btn-primary" id="wish_message">Happy Birthday</button>
+					<button class="btn btn-primary" id="wish_message">Happy Birthday babyy</button>
 					<button class="btn btn-primary" id="story">A mesage for you</button>
+					<button class="btn btn-primary" id="memories">Memories &lt;3</button>
 					<!-- <button class="btn btn-primary" id="cake_cut">Lrt's Cut the Cake</button> -->
 				</div>
 			</div>

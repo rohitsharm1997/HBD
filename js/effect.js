@@ -3,6 +3,12 @@ $(window).load(function(){
 	$('.container').fadeIn('fast');
 });
 $('document').ready(function(){
+		// TEMP TEST BUTTON - REMOVE BEFORE SHARING
+		$('#test_skip_memories').click(function(){
+			$('#memories').trigger('click');
+		});
+		// END TEMP TEST BUTTON
+
 		var vw;
 		$(window).resize(function(){
 			 vw = $(window).width()/2;
@@ -16,7 +22,9 @@ $('document').ready(function(){
 			$('#b77').animate({top:240, left: vw+250},500);
 		});
 
-	$('#turn_on').click(function(){
+	var countdownTarget = new Date(2026, 7, 23, 17, 0, 0).getTime();
+
+	function turnOnLights(){
 		$('#bulb_yellow').addClass('bulb-glow-yellow');
 		$('#bulb_red').addClass('bulb-glow-red');
 		$('#bulb_blue').addClass('bulb-glow-blue');
@@ -24,10 +32,31 @@ $('document').ready(function(){
 		$('#bulb_pink').addClass('bulb-glow-pink');
 		$('#bulb_orange').addClass('bulb-glow-orange');
 		$('body').addClass('peach');
-		$(this).fadeOut('slow').delay(5000).promise().done(function(){
+		$('#countdown_wrap').fadeOut('slow').delay(5000).promise().done(function(){
 			$('#play').fadeIn('slow');
 		});
-	});
+	}
+
+	var countdownTimer = setInterval(function(){
+		var remaining = countdownTarget - Date.now();
+
+		if (remaining <= 0) {
+			clearInterval(countdownTimer);
+			$('#cd_days, #cd_hours, #cd_minutes, #cd_seconds').text('00');
+			turnOnLights();
+			return;
+		}
+
+		var days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+		$('#cd_days').text(String(days).padStart(2, '0'));
+		$('#cd_hours').text(String(hours).padStart(2, '0'));
+		$('#cd_minutes').text(String(minutes).padStart(2, '0'));
+		$('#cd_seconds').text(String(seconds).padStart(2, '0'));
+	}, 1000);
 	$('#play').click(function(){
 		var audio = $('.song')[0];
         audio.play();
@@ -197,11 +226,100 @@ $('document').ready(function(){
 				// Last message stays + cake comes back
 				$messages.eq(i).fadeIn('slow').promise().done(function(){
 					$('.cake').fadeIn('fast');
+					$('#memories').fadeIn('slow');
 				});
 			}
 		}
 
 		msgLoop(0);
+	});
+
+	var $slideshowSlides = $('#slideshow_wrap .slideshow-slide');
+	var slideshowIndex = 0;
+	var slideshowTimer = null;
+	var slideshowVideoFallback = null;
+	var SLIDESHOW_VIDEO_MAX_MS = 20000;
+
+	function stopSlideshowTimer(){
+		if (slideshowTimer) {
+			clearInterval(slideshowTimer);
+			slideshowTimer = null;
+		}
+	}
+
+	function clearSlideshowVideoFallback(){
+		if (slideshowVideoFallback) {
+			clearTimeout(slideshowVideoFallback);
+			slideshowVideoFallback = null;
+		}
+	}
+
+	function showSlideshowSlide(index){
+		clearSlideshowVideoFallback();
+		$slideshowSlides.filter('.active').each(function(){
+			var $video = $(this).find('video');
+			if ($video.length) {
+				var el = $video.get(0);
+				el.pause();
+				el.currentTime = 0;
+				$video.off('ended.slideshow error.slideshow');
+			}
+		});
+		$slideshowSlides.removeClass('active');
+
+		slideshowIndex = index;
+		var $current = $slideshowSlides.eq(index).addClass('active');
+		var $video = $current.find('video');
+
+		stopSlideshowTimer();
+
+		if ($video.length) {
+			var videoEl = $video.get(0);
+			videoEl.currentTime = 0;
+			videoEl.play();
+			var advanceAfterVideo = function(){
+				clearSlideshowVideoFallback();
+				$video.off('ended.slideshow error.slideshow');
+				nextSlideshowSlide();
+			};
+			$video.one('ended.slideshow', advanceAfterVideo);
+			$video.one('error.slideshow', advanceAfterVideo);
+			// Backstop: some browsers never fire 'error' on the <video> element
+			// when its source is missing/unsupported, which would otherwise
+			// freeze the slideshow on this slide forever.
+			slideshowVideoFallback = setTimeout(advanceAfterVideo, SLIDESHOW_VIDEO_MAX_MS);
+		} else {
+			slideshowTimer = setInterval(nextSlideshowSlide, 4000);
+		}
+	}
+
+	function nextSlideshowSlide(){
+		showSlideshowSlide((slideshowIndex + 1) % $slideshowSlides.length);
+	}
+
+	$('#memories').click(function(){
+		$(this).fadeOut('slow');
+		$('.cake').fadeOut('fast');
+		$('.message').fadeOut('fast');
+		$('#slideshow_wrap').fadeIn('slow');
+
+		$('.song')[0].pause();
+		var slideshowSong = $('.slideshow-song')[0];
+		slideshowSong.currentTime = 0;
+		slideshowSong.play();
+
+		showSlideshowSlide(0);
+	});
+
+	$('#slideshow_next').click(function(){
+		nextSlideshowSlide();
+	});
+
+	$(document).keydown(function(e){
+		if (e.which === 8 && $('#slideshow_wrap').is(':visible')) {
+			e.preventDefault();
+			nextSlideshowSlide();
+		}
 	});
 
 });
