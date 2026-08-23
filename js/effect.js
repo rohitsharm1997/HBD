@@ -22,7 +22,7 @@ $('document').ready(function(){
 			$('#b77').animate({top:240, left: vw+250},500);
 		});
 
-	var countdownTarget = new Date(2026, 7, 23, 17, 0, 0).getTime();
+	var countdownTarget = new Date(2026, 7, 24, 0, 0, 0).getTime();
 
 	function turnOnLights(){
 		$('#bulb_yellow').addClass('bulb-glow-yellow');
